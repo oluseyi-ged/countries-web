@@ -1,21 +1,27 @@
 import { useEffect, useState } from "react"
+import axios from "axios"
 import SearchBar from "./SearchBar"
 import Card from "./Card"
-
 import { Country } from "./App"
-import axios from "axios"
+import Pagenation from "./Pagenation"
 
 interface Props {
   countries: Country[]
   handleRegion: (region: string) => void
   region: string
-  // darkTheme: boolean
 }
 
 const CardList: React.FC<Props> = ({ countries, region, handleRegion }) => {
   const [fetchedCountries, setFetchedCountries] = useState<Country[]>()
   const [filteredCountries, setFilteredCountries] = useState<Country[]>()
   const [name, setName] = useState("")
+
+  const [currentPage, setCurrentPage] = useState(1)
+  const [countriesPerPage] = useState(12)
+
+  const indexOfLast = currentPage * countriesPerPage
+  const indexOfFirst = indexOfLast - countriesPerPage
+  const currentCountries = filteredCountries?.slice(indexOfFirst, indexOfLast)
 
   useEffect(() => {
     if (region !== "Filter by Region") {
@@ -48,6 +54,7 @@ const CardList: React.FC<Props> = ({ countries, region, handleRegion }) => {
     setName(name)
   }
 
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
   return (
     <>
       <div className={`container container--cardlist `}>
@@ -57,9 +64,14 @@ const CardList: React.FC<Props> = ({ countries, region, handleRegion }) => {
           region={region}
         />
         <div className="cardlist">
-          {filteredCountries?.map((country, i) => {
+          {currentCountries?.map((country, i) => {
             return <Card key={i} country={country} />
           })}
+          <Pagenation
+            countriesPerPage={countriesPerPage}
+            totalCountries={filteredCountries?.length}
+            paginate={paginate}
+          />
         </div>
       </div>
     </>

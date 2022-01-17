@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react"
-import { BrowserRouter, Route, Switch } from "react-router-dom"
+import { useCallback, useEffect, useState } from "react"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import axios from "axios"
 import Header from "./Header"
 import CardList from "./CardList"
@@ -26,7 +26,7 @@ const App = () => {
     getCountries()
   }, [])
 
-  const getCountries = async (): Promise<void> => {
+  const getCountries = useCallback(async () => {
     await axios
       .get("https://restcountries.eu/rest/v2/all")
       .then((res) => {
@@ -37,20 +37,24 @@ const App = () => {
         console.log(error)
         alert("It might be API problem... Please try again.")
       })
-  }
+  }, [])
 
-  const handleTheme = (): void => {
+  useEffect(() => {
+    getCountries()
+  }, [getCountries])
+
+  const handleTheme = useCallback(() => {
     setDarkTheme(!darkTheme)
     document.body.classList.toggle("dark")
-  }
+  }, [darkTheme])
 
-  const handleRegion = (region: string): void => {
+  const handleRegion = useCallback((region: string) => {
     setRegion(region)
-  }
+  }, [])
 
   return (
     <>
-      <BrowserRouter>
+      <Router>
         <Switch>
           <Route path="/" exact>
             <div className="wrapper">
@@ -67,15 +71,15 @@ const App = () => {
             path="/detail/:alpha3Code"
             render={(routeProps) => (
               <CardDetail
-                countryName={routeProps.match.params.alpha3Code}
                 darkTheme={darkTheme}
+                countryCode={routeProps.match.params.alpha3Code}
                 handleTheme={handleTheme}
                 countries={countries}
               />
             )}
           />
         </Switch>
-      </BrowserRouter>
+      </Router>
     </>
   )
 }
