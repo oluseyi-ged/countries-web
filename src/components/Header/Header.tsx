@@ -1,4 +1,4 @@
-import ThemeSwitch from "./ThemeSwitch"
+import ThemeSwitch from "../ThemeSwitcher/ThemeSwitch"
 interface Props {
   handleTheme: () => void
   darkTheme: boolean

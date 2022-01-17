@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
-import SearchBar from "./SearchBar"
-import Card from "./Card"
-import { Country } from "./App"
+import SearchBar from "../SearchBar/SearchBar"
+import Card from "../Card/Card"
+import { Country } from "../../App"
 import Pagination from "rc-pagination"
 import "rc-pagination/assets/index.css"
 

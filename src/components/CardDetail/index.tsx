@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import axios from "axios"
-import Header from "../Header"
+import Header from "../Header/Header"
 import CardDetailItem from "./CardDetailItem"
 import CardDetailBorders from "./CardDetailBorders"
 import CardDetailLaunguages from "./CardDetailLaunguages"
 import CardDetailFlag from "./CardDetailFlag"
-import { Country } from "../App"
+import { Country } from "../../App"
 
 interface Props {
   countries: Country[]
