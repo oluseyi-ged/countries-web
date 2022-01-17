@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 import axios from "axios"
 import Header from "./Header"
@@ -14,10 +14,6 @@ export interface Country {
   region: string
   capital: string
   alpha3Code: string
-}
-
-export const cn = (darkTheme: boolean) => {
-  return darkTheme && "theme--dark"
 }
 
 const App = () => {
@@ -45,6 +41,7 @@ const App = () => {
 
   const handleTheme = (): void => {
     setDarkTheme(!darkTheme)
+    document.body.classList.toggle("dark")
   }
 
   const handleRegion = (region: string): void => {
@@ -63,15 +60,14 @@ const App = () => {
                 countries={countries}
                 handleRegion={handleRegion}
                 region={region}
-                darkTheme={darkTheme}
               />
             </div>
           </Route>
           <Route
-            path="/detail/:countryName"
+            path="/detail/:alpha3Code"
             render={(routeProps) => (
               <CardDetail
-                countryName={routeProps.match.params.countryName}
+                countryName={routeProps.match.params.alpha3Code}
                 darkTheme={darkTheme}
                 handleTheme={handleTheme}
                 countries={countries}
