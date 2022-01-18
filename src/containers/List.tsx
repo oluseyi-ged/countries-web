@@ -6,6 +6,7 @@ import { setTerm } from "../store/term"
 import { Card, Feature, List } from "../components"
 import { COUNTRIES_DATA } from "../fixtures/countries"
 import { FILTER_TEXT } from "../fixtures/regions"
+import { getItems } from "../utils/getItems"
 import "rc-pagination/assets/index.css"
 import Pagination from "rc-pagination"
 
@@ -43,8 +44,6 @@ export default function ListContainer() {
     } else {
       setList(filteredCountries)
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filteredCountries, term])
 
   const handlePageNumber = (num: number) => {
@@ -81,9 +80,7 @@ export default function ListContainer() {
                   </Feature.Group>
                   <Feature.Group>
                     <Feature.Property>Capital: </Feature.Property>
-                    <Feature.Value>
-                      {country.capital ? country.capital : "-"}
-                    </Feature.Value>
+                    <Feature.Value>{getItems(country.capital)}</Feature.Value>
                   </Feature.Group>
                   <Feature.Group>
                     {country.languages && (

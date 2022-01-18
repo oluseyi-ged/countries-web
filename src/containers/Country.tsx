@@ -2,16 +2,16 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { useHistory } from "react-router"
 import { COUNTRIES_DATA } from "../fixtures/countries"
-// import { Country } from '../types';
+import { CountryType } from "../types"
 import { Button, Frame, Feature } from "../components"
+import { getItems } from "../utils/getItems"
 
 export default function CountryContainer({
   countryCode,
 }: {
   countryCode: string | string[]
 }) {
-  // const [country, setCountry] = useState<Country>();
-  const [country, setCountry] = useState<any>()
+  const [country, setCountry] = useState<CountryType>()
 
   useEffect(() => {
     const currentCountry = COUNTRIES_DATA.filter((c) => c.cca3 === countryCode)
@@ -60,20 +60,12 @@ export default function CountryContainer({
               </Feature.Group>
               <Feature.Group>
                 <Feature.Property>Capital City: </Feature.Property>
-                <Feature.Value>{country.capital[0]}</Feature.Value>
+                <Feature.Value>{getItems(country.capital)}</Feature.Value>
               </Feature.Group>
-              {/* <Feature.Group>
+              <Feature.Group>
                 <Feature.Property>Languages: </Feature.Property>
-                <Feature.Value>
-                  {country.languages.length
-                    ? Object.values(country.languages).map((lan, i) =>
-                        i === Object.values(country.languages).length - 1
-                          ? lan
-                          : lan + ', '
-                      )
-                    : '-'}
-                </Feature.Value>
-              </Feature.Group> */}
+                <Feature.Value>{getItems(country.languages)}</Feature.Value>
+              </Feature.Group>
               <Feature.Group>
                 <Feature.Property>Latitude / Longitude: </Feature.Property>
                 <Feature.Value>
@@ -85,7 +77,7 @@ export default function CountryContainer({
                 <Feature.Property>border countries: </Feature.Property>
                 <Button.Group>
                   {country.borders ? (
-                    country.borders.map((b: any, i: number) => (
+                    country.borders.map((b: string, i: number) => (
                       <Link to={`/detail?code=${b}`} key={i}>
                         <Button.Content>{b}</Button.Content>
                       </Link>

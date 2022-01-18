@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { SearchBar, Filter } from "../components"
-import { REGIONS } from "../fixtures/region"
+import { REGIONS } from "../fixtures/regions"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../store"
 import { setFilter } from "../store/filter"
@@ -10,7 +10,9 @@ import { setPageNumber } from "../store/page"
 export default function BrowseContainer() {
   const { region } = useSelector((state: RootState) => state.filter)
   const { term } = useSelector((state: RootState) => state.term)
+
   const [currentTerm, setCurrentTerm] = useState(term)
+
   const dispatch = useDispatch()
 
   const handleFilter = (region: string) => {

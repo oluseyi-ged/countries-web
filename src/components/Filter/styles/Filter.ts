@@ -28,10 +28,13 @@ export const Container = styled.div`
       }
     }
   }
+
   @media (max-width: 500px) {
     margin-top: 1rem;
   }
 `
+
+export const Frame = styled.div``
 
 export const Heading = styled.div`
   display: flex;
@@ -62,6 +65,7 @@ export const Item = styled.div`
 `
 
 export const Icon = styled.img`
+  width: 1rem;
   margin: 1rem;
   transform: rotate(180deg);
   transition: transform 0.1s;
