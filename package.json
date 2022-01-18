@@ -34,7 +34,6 @@
     "styles": "^0.2.1",
     "typesafe-actions": "^5.1.0",
     "typescript": "^4.4.2",
-    "vercel": "^23.1.2",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
