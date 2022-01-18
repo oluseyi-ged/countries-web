@@ -24,7 +24,7 @@ export const Form = styled.form`
 `
 
 export const Icon = styled.img`
-  width: 4rem;
+  width: 3rem;
   padding: 0 1rem;
   display: flex;
   align-items: center;

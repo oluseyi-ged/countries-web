@@ -1,43 +1,56 @@
 import styled from "styled-components"
 
+export const List = styled.div`
+  display: none;
+  width: 15rem;
+  position: absolute;
+  z-index: 1000;
+  box-shadow: var(--light-box-shadow);
+  // ### Theme
+  background-color: var(--light-elements);
+`
+
 export const Container = styled.div`
   width: 15rem;
   font-weight: $font-bold;
   color: var(--text);
+  background-color: var(--light-elements);
+  box-shadow: var(--light-box-shadow);
+
+  &:hover {
+    ${List} {
+      display: block;
+    }
+    div {
+      img {
+        transform: rotate(0deg);
+      }
+    }
+  }
 `
 
 export const Heading = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
-  padding: 1rem;
-  background-color: var(--elements);
+  background-color: var(--light-elements);
+  font-weight: var(--font-bold);
+  color: var(--light-text);
   cursor: pointer;
-  transition: all 0.5s;
+  transition: all 0.1s;
   &:hover {
     opacity: 0.7;
   }
 `
-export const Text = styled.h3``
-export const List = styled.div`
-  width: 15rem;
-  margin-top: 0.5rem;
-  padding: 0.5rem 1rem;
-
-  // ### Theme
-  background-color: var(--elements);
-  position: absolute;
-  transform: scaleY(0);
-  transition: transform 0.1s;
-  z-index: 10;
-`
 
 // ### Have to Fix
 export const Item = styled.div`
-  width: 15rem;
-  height: 3rem;
-  margin: 0.3rem 0;
+  height: 1.3rem;
+  margin: 1rem 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: var(--elements);
   cursor: pointer;
   &:hover {
     opacity: 0.8;
@@ -45,7 +58,7 @@ export const Item = styled.div`
 `
 
 export const Icon = styled.img`
-  width: 1rem;
+  margin: 1rem;
   transform: rotate(180deg);
-  transition: transform 0.3s;
+  transition: transform 0.1s;
 `
