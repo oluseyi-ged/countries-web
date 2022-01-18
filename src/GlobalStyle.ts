@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components"
+import { ThemeType } from "./styled/theme"
 
 export const GlobalStyle = createGlobalStyle`
 :root {
@@ -7,18 +8,13 @@ export const GlobalStyle = createGlobalStyle`
   --font-extra-bold: 800;
   
   --font-size-small: 14px;
-  --font-size-large: 16px;  
-  
-  --light-elements: hsl(0, 0%, 100%);
-  --light-background: hsl(0, 0%, 97%);
-  --light-input: hsl(0, 0%, 52%);
-  --light-text: hsl(200, 15%, 8%);
-  --light-box-shadow: 3px 3px 7px rgba(210, 210, 210, 0.7);
-  --dark-background: hsl(207, 26%, 17%);
-  --dark-elements: hsl(209, 23%, 22%);
-  --dark-input: hsl(209, 23%, 22%);
-  --dark-text: hsl(0, 0%, 100%);
-  --dark-box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.7);
+  --font-size-large: 16px;
+  --elements: ${({ theme }: { theme: ThemeType }) =>
+    theme.elementBackgroundColor} ;
+  --background: ${({ theme }: { theme: ThemeType }) => theme.backgroundColor};
+  --input: ${({ theme }: { theme: ThemeType }) => theme.inputBackground};
+  --text: ${({ theme }: { theme: ThemeType }) => theme.color};
+  --box-shadow: ${({ theme }: { theme: ThemeType }) => theme.boxShadow};  
 }
 * {
   box-sizing: border-box;
@@ -40,6 +36,11 @@ html {
     font-size: 13px;
   }
 }
+
+body {
+  background-color: var(--background);
+}
+
 .pagination {
   display:flex;
   align-items: center;

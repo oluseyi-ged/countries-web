@@ -1,14 +1,20 @@
+import { useSelector } from "react-redux"
+import { RootState } from "../../store"
 import { Container, Icon, Text } from "./styles/ThemeSwitch"
 
 export default function ThemeSwitch({
   children,
+  onClick,
 }: {
   children: JSX.Element | JSX.Element[]
+  onClick: () => void
 }) {
-  return <Container>{children}</Container>
+  return <Container onClick={onClick}>{children}</Container>
 }
 
-ThemeSwitch.Icon = function ThemeSwitchIcon({ theme }: { theme: string }) {
+ThemeSwitch.Icon = function ThemeSwitchIcon() {
+  const { theme } = useSelector((state: RootState) => state.theme)
+
   return theme === "light" ? (
     <Icon src="./assets/icon-moon.png" alt="" />
   ) : (
@@ -16,6 +22,8 @@ ThemeSwitch.Icon = function ThemeSwitchIcon({ theme }: { theme: string }) {
   )
 }
 
-ThemeSwitch.Text = function ThemeSwitchIcon({ theme }: { theme: string }) {
-  return <Text>{theme === "light" ? "Dark" : "Light"} Mode</Text>
+ThemeSwitch.Text = function ThemeSwitchIcon() {
+  const { theme } = useSelector((state: RootState) => state.theme)
+
+  return <Text theme={theme}>{theme === "light" ? "Dark" : "Light"} Mode</Text>
 }

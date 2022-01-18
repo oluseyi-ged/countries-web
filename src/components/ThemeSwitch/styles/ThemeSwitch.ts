@@ -10,7 +10,6 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  // ### Theme
   font-size: 1rem;
   font-weight: var(--font-bold);
   &:hover {
@@ -33,4 +32,5 @@ export const Text = styled.h3`
   cursor: pointer;
   font-size: 1rem;
   font-weight: var(--font-bold);
+  color: var(--text);
 `
