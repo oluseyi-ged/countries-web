@@ -2,9 +2,6 @@
   "name": "countries-web",
   "version": "0.1.0",
   "private": true,
-  "engines": {
-    "node": "14.17.3"
-  },
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.1",
     "@testing-library/jest-dom": "^5.14.1",
