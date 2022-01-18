@@ -5,14 +5,18 @@ import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../store"
 import { setFilter } from "../store/filter"
 import { setTerm } from "../store/term"
+import { setPageNumber } from "../store/page"
 
 export default function BrowseContainer() {
   const { region } = useSelector((state: RootState) => state.filter)
   const { term } = useSelector((state: RootState) => state.term)
   const [currentTerm, setCurrentTerm] = useState(term)
   const dispatch = useDispatch()
+
   const handleFilter = (region: string) => {
     dispatch(setFilter(region))
+    dispatch(setTerm(""))
+    dispatch(setPageNumber(1))
   }
 
   const handleTerm = (term: string) => {

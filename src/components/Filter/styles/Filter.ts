@@ -28,6 +28,9 @@ export const Container = styled.div`
       }
     }
   }
+  @media (max-width: 500px) {
+    margin-top: 1rem;
+  }
 `
 
 export const Heading = styled.div`
